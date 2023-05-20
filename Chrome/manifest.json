@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "m4uhd m3u8 finder",
+  "description": "This tool gets the m3u8 playlist url and also the subtitle if available from m4uhd.tv site.",
+  "version": "0.7",
+  "icons": {
+    "16": "images/Hat.16.png",
+    "32": "images/Hat.32.png",
+    "48": "images/Hat.48.png",
+    "128": "images/Hat.128.png"
+  },
+  "content_scripts": [
+    {
+      "js": ["lib/jquery-3.6.4.min.js", "lib/crypto-js.min.js", "scripts/main.js"],
+      "matches": ["https://m4uhd.tv/*"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "json/ruleset_1.json"
+      }
+    ]
+  },
+  "permissions": ["declarativeNetRequest"],
+  "host_permissions": ["https://www.google.com/recaptcha/api2/*", 
+  "https://api-post-iframe-rd.playmoviekh.click/api/playiframe",
+  "https://api-plhq.playm4u.xyz/*"]
+}
